@@ -1,0 +1,36 @@
+/* components/song-item-v2/index.wxss */
+.song-item-v2{
+    display: flex;
+    /*margin:0 30rpx;*/
+    padding:14rpx;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    margin-left:10rpx;
+}
+image{
+    width:20rpx;
+    height:20rpx;
+    display: inline-block;
+    margin-right:10rpx;
+}
+.author{
+    font-size:28rpx;
+    font-weight: bolder;
+}
+.source text{
+    font-size:24rpx;
+    color:#666;
+}
+.source .dot{
+    display: inline-block;
+    margin:0 10rpx;
+}
+.num{
+    height:80rpx;
+    line-height:80rpx;
+    font-size:24rpx;
+    font-weight: bolder;
+    margin-right:12rpx;
+}

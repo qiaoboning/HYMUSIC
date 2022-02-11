@@ -1,0 +1,33 @@
+/* components/ranking-area-item/index.wxss */
+.ranking-list-item{
+    display: flex;
+    justify-content: space-between;
+    /*height:200rpx;*/
+    padding:20rpx 0;
+    font-size:24rpx;
+}
+.right{
+    width:30%;
+}
+.right image{
+    width:100%;
+    display: inline-block;
+}
+.item-info{
+    height:60rpx;
+    line-height:60rpx;
+}
+.title{
+    font-size:32rpx;
+    font-weight:bolder;
+}
+.item-info text:first-child{
+    margin-right:10rpx;
+}
+.item-info{
+    width:400rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+}

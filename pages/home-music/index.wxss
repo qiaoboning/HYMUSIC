@@ -1,0 +1,13 @@
+/* pages/home-music/index.wxss */
+page{
+  padding:0 20rpx;
+}
+.swiper-item .swiper-image{
+  width: 100%;
+  display: block;
+}
+.swiper{
+  border-radius: 20rpx;
+  overflow: hidden;
+  transform: translateY(0);
+}

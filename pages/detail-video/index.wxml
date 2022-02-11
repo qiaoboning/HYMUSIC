@@ -1,0 +1,12 @@
+<!--pages/detail-video/index.wxml-->
+<video 
+    class="myVideo" 
+    src="{{MVURLInfos.url}}"
+    autoplay="false" 
+    referrer-policy="origin"
+  ></video>
+<view class="test">
+  <view wx:for="{{100}}" wx:key="*this">{{item}}</view>
+</view>
+
+

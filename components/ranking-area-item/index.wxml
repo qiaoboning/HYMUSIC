@@ -1,0 +1,14 @@
+<!--components/ranking-area-item/index.wxml-->
+<view class="ranking-list-item">
+    <view class="left">
+        <view class="title">{{item.name}}</view>
+        <view class="item-info" wx:for="{{item.songList}}" wx:key="index">
+            <text>{{index+1}}.</text>
+            <text>{{item.al.name}} - </text>
+            <text>{{item.ar[0].name}}</text>
+        </view>
+    </view>
+    <view class="right">
+        <image src="{{item.coverImgUrl}}" mode="widthFix"></image>
+    </view>
+</view>

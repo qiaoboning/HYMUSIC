@@ -1,0 +1,34 @@
+<!--pages/music-player/index.wxml-->
+<image class="bg-image" src="{{currentSong.al.picUrl}}" mode="aspectFill"></image>
+<view class="bg-cover"></view>
+<nav-bar>
+  <view class="tab" slot="center">
+    <text class="{{ currentPage === 0 ?'active':'' }}">歌曲</text>
+    <text class="divider">|</text>
+    <text class="{{ currentPage === 1 ?'active':'' }}">歌词</text>
+  </view>
+</nav-bar>
+<swiper class="content" style="height:{{contentHeight}}px" 	bindchange="handleSwiperItem">
+  <swiper-item class="music">
+    <view class="album">
+      <image mode="widthFix" src="{{currentSong.al.picUrl}}"></image>
+    </view>
+    <view class="info">
+      <view class="songName">{{currentSong.name}}</view>
+      <view class="songAuthor">{{currentSong.ar[0].name}}</view>
+      <view class="songAlia">{{currentSong.alia[0]}}</view>
+    </view>
+    <view class="lyric">我是歌词</view>
+    <view class="progess">
+      <slider bindchange="sliderChange" block-size="12"/>
+    </view>
+    <view class="operate">
+      <image class="play_order" src="/assets/images/player/play_order.png"></image>
+      <image class="play_prev" src="/assets/images/player/play_prev.png"></image>
+      <image class="play_resume" src="/assets/images/player/play_resume.png"></image>
+      <image class="play_next" src="/assets/images/player/play_next.png"></image>
+      <image class="play_music" src="/assets/images/player/play_music.png"></image>
+    </view>
+  </swiper-item>
+  <swiper-item class="lyric">2</swiper-item>
+</swiper>

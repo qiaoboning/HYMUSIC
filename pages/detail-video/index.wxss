@@ -1,0 +1,8 @@
+/* pages/detail-video/index.wxss */
+.myVideo{
+  width:100%;
+  position: fixed;
+}
+.test{
+  padding-top:225px;
+}

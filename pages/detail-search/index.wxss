@@ -1,0 +1,35 @@
+/* pages/detail-search/index.wxss */
+page{
+  padding:0 20rpx;
+  padding-top:100rpx;
+}
+.search{
+  width:100%;
+  position: fixed;
+  top:0;
+  left: 0;
+}
+.keywords{
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag{
+  padding:18rpx 26rpx;
+  font-size: 24rpx;
+}
+.tag:first-of-type{
+  color:#26ce8a;
+}
+.item{
+  display: flex;
+  margin:30rpx 0;
+  font-size: 30rpx;
+}
+.item image{
+  width:50rpx;
+  height:50rpx;
+}
+.title{
+  font-weight: bold;
+  color:#26ce8a;
+}

@@ -1,0 +1,35 @@
+<van-search 
+  value="{{ value }}" 
+  disabled 
+  placeholder="请输入搜索关键词" 
+  shape="round" 
+  background="#fafafa"
+  bind:click-input="handleSearch"/>
+  <swiper class="swiper" autoplay indicator-dots style="height:{{swiperHeight}}px">
+    <block wx:for="{{bannerList}}" wx:key="bannerId">
+      <swiper-item class="swiper-item">
+        <image 
+        class="swiper-image" 
+        src="{{item.pic}}" 
+        mode="widthFix"
+        bindload="handleSwiperLoaded"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <area-header title="{{title}}" rightText="{{rightText}}" bind:click="handleMoreClick">
+    <!-- <text>hahaha</text> -->
+  </area-header>
+<!--热门推荐-->
+  <view wx:for="{{recommendSongs}}" wx:key="id" wx:if="{{recommendSongs}}">
+    <song-item-v1 item="{{item}}"></song-item-v1>
+  </view>
+<!--热门/推荐歌单-->
+  <song-menu-area title="热门歌单" menuData="{{hotSongs}}" wx:if="{{hotSongs}}"></song-menu-area>
+  <song-menu-area title="推荐歌单" menuData="{{recommendSongMenu}}" wx:if="{{recommendSongMenu}}"></song-menu-area>
+<!--巅峰榜-->
+<area-header title="巅峰榜" showRight="{{false}}"></area-header>
+<view class="ranking-list">
+  <block wx:for="{{rankings}}" wx:key="name">
+    <ranking-area-item item="{{item}}" bind:tap="handleDeatilSongs" data-idx="{{index}}"></ranking-area-item>
+  </block>
+</view>
