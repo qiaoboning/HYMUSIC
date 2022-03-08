@@ -1,5 +1,6 @@
 // pages/music-player/index.js
 import { getSongDetail } from '../../service/api_player'
+const globalData = getApp().globalData
 Page({
 
   /**
@@ -9,7 +10,8 @@ Page({
     id:'',//当前歌曲id
     currentSong:[],
     currentPage:0,
-    contentHeight:0
+    contentHeight:0,
+    isMusicLynic:false,//是否显示歌词
   },
 
   /**
@@ -19,12 +21,19 @@ Page({
     const id = options.id;
     this.setData({id})
     this.getPageData(id)
-    const globalData = getApp().globalData
+    // const globalData = getApp().globalData
+    const deviceRadio = globalData.deviceRadio
+    console.log(deviceRadio)
     const screenHeight = globalData.screenHeight
     const statusBarHeight = globalData.statusBarHeight
     const navBarHeight = globalData.navBarHeight
     const contentHeight = screenHeight - statusBarHeight - navBarHeight
-    this.setData({contentHeight})
+    this.setData({contentHeight,isMusicLynic:deviceRadio >= 2})
+
+    // 创建播放器
+    const audioContext =  wx.createInnerAudioContext();
+    audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+    // audioContext.play();
   },
   getPageData(id){
     getSongDetail(id).then(res => {

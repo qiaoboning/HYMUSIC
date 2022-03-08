@@ -53,7 +53,18 @@ page{
 .operate{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .album{
   text-align: center;
+}
+.time{
+  margin:0 rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+}
+.play_resume{
+  width:120rpx!important;
+  height:120rpx!important;
 }

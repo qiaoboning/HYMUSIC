@@ -6,7 +6,7 @@
     <view class="left">
       <view class="left-slot"><slot name="left"></slot></view>
       <view class="left-arrow">
-        <image class="icon" mode="widthFix" src="/assets/images/icons/arrow-right.png"></image>
+        <image class="icon" mode="widthFix" src="/assets/images/icons/arrow-left.png"></image>
       </view>
     </view>
     <view class="center">
