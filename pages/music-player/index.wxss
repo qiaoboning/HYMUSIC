@@ -49,6 +49,7 @@ page{
 }
 .lyric{
   text-align: center;
+  color:#0f0
 }
 .operate{
   display: flex;
@@ -67,4 +68,23 @@ page{
 .play_resume{
   width:120rpx!important;
   height:120rpx!important;
+}
+.lyric-list{
+  height: 100%;
+  text-align: center;
+}
+.lyric-list view{
+  height:35px;
+  line-height: 35px;
+  font-size: 24rpx;
+  color: #999;
+}
+.lyric-list .active{
+  color: #0f0;
+  font-size: 32rpx;
+}
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
 }

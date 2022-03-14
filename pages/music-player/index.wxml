@@ -1,4 +1,5 @@
 <!--pages/music-player/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
 <image class="bg-image" src="{{currentSong.al.picUrl}}" mode="aspectFill"></image>
 <view class="bg-cover"></view>
 <nav-bar>
@@ -18,12 +19,12 @@
       <view class="songAuthor">{{currentSong.ar[0].name}}</view>
       <view class="songAlia">{{currentSong.alia[0]}}</view>
     </view>
-    <view class="lyric" wx:if="{{isMusicLynic}}">我是歌词</view>
+    <view class="lyric" wx:if="{{isMusicLynic}}">{{currentLyricText}}</view>
     <view class="progess">
-      <slider bindchange="sliderChange" block-size="12"/>
+      <slider value="{{sliderValue}}" bindchange="sliderChange" bindchanging="sliderChanging" block-size="12"/>
       <view class="time">
-        <view class="current">01:00</view>
-        <view class="duration">01:00</view>
+        <view class="current">{{format.formatDuration(currentTime)}}</view>
+        <view class="duration">{{format.formatDuration(durationTime)}}</view>
       </view>
     </view>
     <view class="operate">
@@ -34,5 +35,12 @@
       <image class="play_music" src="/assets/images/player/play_music.png"></image>
     </view>
   </swiper-item>
-  <swiper-item class="lyric">2</swiper-item>
+  <swiper-item class="lyric-content">
+    <scroll-view scroll-y="true" scroll-top="{{lyricTextScroll}}" scroll-with-animation class="lyric-list">
+      <block wx:for="{{lyricInfos}}" wx:key="time">
+        <view class="{{currentIndex === index ? 'active' : ''}}"
+              style="padding-top:{{index === 0 ? (contentHeight/2-80) : 0}}px;padding-bottom:{{index === lyricInfos.length - 1 ? (contentHeight/2+80) : 0}}px">{{item.text}}</view>
+      </block>
+    </scroll-view>
+  </swiper-item>
 </swiper>
