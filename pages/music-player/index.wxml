@@ -2,7 +2,7 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <image class="bg-image" src="{{currentSong.al.picUrl}}" mode="aspectFill"></image>
 <view class="bg-cover"></view>
-<nav-bar>
+<nav-bar bind:click="handleBackClick">
   <view class="tab" slot="center">
     <text class="{{ currentPage === 0 ?'active':'' }}">歌曲</text>
     <text class="divider">|</text>
