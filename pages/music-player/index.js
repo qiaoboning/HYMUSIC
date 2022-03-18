@@ -1,6 +1,7 @@
 // pages/music-player/index.js
 import { audioContext,playStore } from '../../store/play-store'
 const globalData = getApp().globalData
+const playModeNames = ['order','repeat','random']
 Page({
 
   /**
@@ -23,6 +24,11 @@ Page({
     contentHeight:0,
     sliderValue:0,
     isSliderChanging:false,//记录是否正在拖拽slider,
+
+    playModeIndex:0,
+    playModeName:'order',
+    isPlaying:false,
+    playingName:'pause'
   },
 
   /**
@@ -39,47 +45,8 @@ Page({
     const contentHeight = screenHeight - statusBarHeight - navBarHeight
     this.setData({contentHeight,isMusicLynic:deviceRadio >= 2})
 
-    this.audioContextListener()
-
     // audioContext的事件监听
     this.setUpPlayerStoreListener()
-  },
-  // audio监听
-  audioContextListener(){
-    audioContext.onCanplay(() => {
-      audioContext.play();
-    })
-    // 当前播放时间
-    audioContext.onTimeUpdate(() => {
-      const currentTime = audioContext.currentTime * 1000
-      if(!this.data.isSliderChanging){
-        this.setData({
-          currentTime,
-          sliderValue:(currentTime / this.data.durationTime) * 100
-        })
-      }  
-
-      if(!this.data.lyricInfos.length) return
-      let i=0
-      for(;i<this.data.lyricInfos.length;i++){
-        const lyricInfo = this.data.lyricInfos[i]
-        if(currentTime < lyricInfo.time){
-          break         
-        }
-      }
-      const currentIndex = i - 1
-      if(currentIndex !== this.data.currentIndex){
-        const currentLyricInfo = this.data.lyricInfos[currentIndex]
-        this.setData({ currentLyricText: currentLyricInfo.text,currentIndex,lyricTextScroll: currentIndex * 35})
-      }
-
-      // const currentLyricInfo = this.data.lyricInfos.find(item => {
-      //   console.log(item)
-      //   item.time > currentTime
-      // })
-      // console.log(currentLyricInfo);
-      // this.setData({lyricText:currentLyricInfo.text})
-    })
   },
   // slider正在改变（用户手指拖拽中）
   sliderChanging(event){
@@ -105,6 +72,24 @@ Page({
   handleBackClick(){
     wx.navigateBack()
   },
+  handleModeBtnClick(){
+    let currentPlayModeIndex = this.data.playModeIndex + 1;
+    if(currentPlayModeIndex == 3){
+      currentPlayModeIndex = 0
+    }
+    playStore.setState('playModeIndex',currentPlayModeIndex)
+  },
+  handlePlayBtnClick(){
+    playStore.dispatch('changeMusicPlayStatusAction',!this.data.isPlaying)
+  },
+  // 上一首
+  handlePrevBtnClick(){
+    playStore.dispatch("changeNewMusicAction",false)
+  },
+  // 下一首
+  handleNextBtnClick(){
+    playStore.dispatch("changeNewMusicAction")
+  },
   setUpPlayerStoreListener(){
     playStore.onStates(['currentSong','durationTime','lyricInfos'],({
       currentSong,
@@ -115,9 +100,45 @@ Page({
       if (durationTime) this.setData({ durationTime })
       if (lyricInfos) this.setData({ lyricInfos })
     })
+
+    playStore.onStates(['currentTime','currentLyricText','currentIndex'],({
+      currentTime,
+      currentLyricText,
+      currentIndex
+    }) => {
+      // 时间变化
+      if(currentTime && !this.data.isSliderChanging){
+        this.setData({
+          currentTime,
+          sliderValue:(currentTime / this.data.durationTime) * 100
+        })
+      } 
+      // 歌词变化
+      if(currentIndex){
+        this.setData({ currentIndex: currentIndex,lyricTextScroll: currentIndex * 35})
+      }
+      if(currentLyricText){
+        this.setData({ currentLyricText })
+      }
+    })
+
+    // 3.监听播放模式数据
+    playStore.onStates(['playModeIndex','isPlaying'],({playModeIndex,isPlaying}) => {
+      if(playModeIndex !== undefined){
+        this.setData({
+          playModeIndex,
+          playModeName:playModeNames[playModeIndex]
+        })
+      }
+      if(isPlaying !== undefined){
+        this.setData({
+          isPlaying,
+          playingName:isPlaying ? "pause":"resume"
+        })
+      }
+    })
   },
   onUnload: function () {
     audioContext.stop();
-  },
- 
+  }, 
 })

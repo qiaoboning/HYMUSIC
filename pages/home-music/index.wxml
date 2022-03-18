@@ -21,7 +21,7 @@
   </area-header>
 <!--热门推荐-->
   <view wx:for="{{recommendSongs}}" wx:key="id" wx:if="{{recommendSongs}}">
-    <song-item-v1 item="{{item}}"></song-item-v1>
+    <song-item-v1 item="{{item}}" bindtap="handleSongItemClick" data-idx="{{index}}"></song-item-v1>
   </view>
 <!--热门/推荐歌单-->
   <song-menu-area title="热门歌单" menuData="{{hotSongs}}" wx:if="{{hotSongs}}"></song-menu-area>

@@ -6,6 +6,7 @@
   <view>歌单</view>
 </block>
 
-<block wx:for="{{songInfo.tracks}}" wx:key="id">
-  <song-item-v2 item="{{item}}" index="{{index+1}}"></song-item-v2>
+<block wx:for="{{songInfo.tracks}}" wx:key="id" wx:if="songInfo.tracks">
+  <song-item-v2 item="{{item}}" index="{{index+1}}" bindtap="handleSongItem" data-index="{{index}}"></song-item-v2>
+  <!-- <song-item-v2 item="{{item}}" bindtap="handleSongItemClick" data-idx="{{index}}"></song-item-v2> -->
 </block>

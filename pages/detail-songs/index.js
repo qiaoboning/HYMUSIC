@@ -1,5 +1,6 @@
 // pages/detail-songs/index.js
 import { rankingStore } from "../../store/ranking-store";
+import { playStore } from "../../store/index"
 import { getMenuSongDetail } from "../../service/api_detail_song"
 
 Page({
@@ -27,6 +28,11 @@ Page({
     this.setData({
       songInfo : res
     })
+  },
+  handleSongItem(event){
+    const index = event.currentTarget.dataset.index;
+    playStore.setState('playListIndex',index)
+    playStore.setState('playListSongs',this.data.songInfo.tracks)    
   },
   onUnload: function () {
     if(this.data.rankName){

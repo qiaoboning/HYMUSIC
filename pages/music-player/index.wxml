@@ -28,10 +28,10 @@
       </view>
     </view>
     <view class="operate">
-      <image class="play_order" src="/assets/images/player/play_order.png"></image>
-      <image class="play_prev" src="/assets/images/player/play_prev.png"></image>
-      <image class="play_resume" src="/assets/images/player/play_pause.png"></image>
-      <image class="play_next" src="/assets/images/player/play_next.png"></image>
+      <image class="play_order" src="/assets/images/player/play_{{playModeName}}.png" bindtap="handleModeBtnClick"></image>
+      <image class="play_prev" src="/assets/images/player/play_prev.png" bindtap="handlePrevBtnClick"></image>
+      <image class="play_resume" src="/assets/images/player/play_{{playingName}}.png" bindtap="handlePlayBtnClick"></image>
+      <image class="play_next" src="/assets/images/player/play_next.png"  bindtap="handleNextBtnClick"></image>
       <image class="play_music" src="/assets/images/player/play_music.png"></image>
     </view>
   </swiper-item>

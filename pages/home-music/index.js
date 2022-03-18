@@ -2,7 +2,7 @@
 import { getSwiperBanner } from '../../service/api_music'
 import { getSongMenu } from '../../service/api_music'
 import { getRecommendSongMenu } from '../../service/api_music'
-import { rankingStore,rankingMap } from "../../store/index"
+import { rankingStore,rankingMap, playStore } from "../../store/index"
 import querySelector from "../../utils/query-select"
 import throttle from "../../utils/throttle" 
 
@@ -74,6 +74,13 @@ Page({
       url:`/pages/detail-songs/index?ranking=${rankName}&type=rank`
     })
   },
+  handleSongItemClick(event){
+    const index = event.currentTarget.dataset.idx;
+    console.log(playStore)
+    playStore.setState('playListIndex',index)
+    playStore.setState('playListSongs',this.data.recommendSongs)
+  },
+
   onUnload() {
     // rankingStore.offState("newRanking",this.getNewRankingHandle)
   },
